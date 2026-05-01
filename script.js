@@ -3,8 +3,17 @@
    ============================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Init AOS
-    AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+    // Init AOS (with safe check for deferred loading)
+    if (typeof AOS !== 'undefined') {
+        AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+    } else {
+        // AOS might not be loaded yet due to defer, wait for it
+        window.addEventListener('load', function() {
+            if (typeof AOS !== 'undefined') {
+                AOS.init({ duration: 800, easing: 'ease-out-cubic', once: true, offset: 80 });
+            }
+        });
+    }
 
     // ========== NAVBAR SCROLL ==========
     const navbar = document.getElementById('mainNavbar');
@@ -18,17 +27,16 @@ document.addEventListener('DOMContentLoaded', function () {
             navbar.classList.remove('scrolled');
         }
     }
-    window.addEventListener('scroll', handleNavScroll);
-    handleNavScroll();
+    handleNavScroll(); // Set initial state
 
     // ========== ACTIVE NAV on SCROLL ==========
     function setActiveNav() {
-        let scrollY = window.scrollY + 120;
+        var scrollY = window.scrollY + 120;
         sections.forEach(function (section) {
-            let top = section.offsetTop;
-            let height = section.offsetHeight;
-            let id = section.getAttribute('id');
-            let link = document.querySelector('.nav-link[href="#' + id + '"]');
+            var top = section.offsetTop;
+            var height = section.offsetHeight;
+            var id = section.getAttribute('id');
+            var link = document.querySelector('.nav-link[href="#' + id + '"]');
             if (link) {
                 if (scrollY >= top && scrollY < top + height) {
                     navLinks.forEach(function (l) { l.classList.remove('active'); });
@@ -37,7 +45,21 @@ document.addEventListener('DOMContentLoaded', function () {
             }
         });
     }
-    window.addEventListener('scroll', setActiveNav);
+
+    // ========== OPTIMIZED SCROLL HANDLER (debounced via rAF) ==========
+    var scrollTicking = false;
+    function onScroll() {
+        if (!scrollTicking) {
+            requestAnimationFrame(function() {
+                handleNavScroll();
+                setActiveNav();
+                animateCounters();
+                scrollTicking = false;
+            });
+            scrollTicking = true;
+        }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
 
     // Close mobile nav on link click
     navLinks.forEach(function (link) {
@@ -85,8 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
         }
     }
-    window.addEventListener('scroll', animateCounters);
-    animateCounters();
+    animateCounters(); // Initial check on page load
 });
 
 // ========== PROPERTY IMAGE SLIDER ==========
@@ -112,9 +133,9 @@ function slideProperty(sliderId, direction) {
 
 // ========== GALLERY LIGHTBOX ==========
 var galleryImages = [
-    'images/galllery.jpeg',
-    'images/gallery2.jpeg',
-    'images/gallery3.jpeg'
+    'images/galllery.webp',
+    'images/gallery2.webp',
+    'images/gallery3.webp'
 ];
 var currentLightboxIndex = 0;
 

@@ -16,6 +16,14 @@
     <meta property="og:type" content="website">
     <link rel="canonical" href="https://paramountlandserpong.com">
 
+    <!-- DNS Prefetch for external resources -->
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+    <link rel="dns-prefetch" href="https://unpkg.com">
+
+    <!-- Preload critical hero image -->
+    <link rel="preload" as="image" href="images/hero-1.webp" type="image/webp" fetchpriority="high">
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,10 +35,15 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-    <!-- AOS Animate -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
+    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- AOS Animate (deferred - non-critical) -->
+    <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" media="print" onload="this.media='all'">
+    <noscript>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    </noscript>
 </head>
 
 <body>
@@ -65,9 +78,9 @@
     <!-- ========== HERO SECTION ========== -->
     <section id="home" class="hero-section">
         <div class="hero-slider">
-            <div class="hero-slide active" style="background-image: url('images/hero-1.png')"></div>
-            <div class="hero-slide" style="background-image: url('images/hero-2.png')"></div>
-            <div class="hero-slide" style="background-image: url('images/hero-3.png')"></div>
+            <div class="hero-slide active" style="background-image: url('images/hero-1.webp')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-2.webp')"></div>
+            <div class="hero-slide" style="background-image: url('images/hero-3.webp')"></div>
         </div>
         <div class="hero-overlay"></div>
         <div class="container hero-content">
@@ -87,22 +100,7 @@
                             <i class="bi bi-play-circle"></i> Virtual Tour
                         </a>
                     </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="15">0</span><span class="stat-suffix">+</span>
-                            <span class="stat-label">Tahun Pengalaman</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="500">0</span><span class="stat-suffix">+</span>
-                            <span class="stat-label">Unit Terjual</span>
-                        </div>
-                        <div class="stat-divider"></div>
-                        <div class="stat-item">
-                            <span class="stat-number" data-count="98">0</span><span class="stat-suffix">%</span>
-                            <span class="stat-label">Kepuasan Pelanggan</span>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -128,23 +126,25 @@
                         <div class="property-image-wrapper">
                             <div class="property-badge">Premium</div>
                             <div class="property-image-slider" id="slider1">
-                                <img src="images/Matera_Lakeside.jpeg" alt="Matera Lakeside"
+                                <img src="images/Matera_Lakeside.webp" alt="Matera Lakeside"
                                     class="property-img active">
-                                <img src="images/Matera_Lakeside2.png" alt="Matera Lakeside View 2"
-                                    class="property-img">
-                                <!-- <img src="images/Matera_Lakeside3.jpeg" alt="Matera Lakeside View 3" class="property-img"> -->
-                                <img src="images/Matera_Lakeside4.png" alt="Matera Lakeside View 4"
-                                    class="property-img">
-                                <img src="images/Matera_Lakeside5.png" alt="Matera Lakeside View 5"
-                                    class="property-img">
-                                <img src="images/Matera_Lakeside6.png" alt="Matera Lakeside View 6"
-                                    class="property-img">
-                                <img src="images/Matera_Lakeside7.png" alt="Matera Lakeside View 7"
-                                    class="property-img">
-                                <img src="images/Matera_Lakeside8.png" alt="Matera Lakeside View 8"
-                                    class="property-img">
+                                <img src="images/Matera_Lakeside2.webp" alt="Matera Lakeside View 2"
+                                    class="property-img" loading="lazy">
+                                <img src="images/Matera_Lakeside3.webp" alt="Matera Lakeside View 3"
+                                    class="property-img" loading="lazy">
+                                <img src="images/Matera_Lakeside4.webp" alt="Matera Lakeside View 4"
+                                    class="property-img" loading="lazy">
+                                <img src="images/Matera_Lakeside5.webp" alt="Matera Lakeside View 5"
+                                    class="property-img" loading="lazy">
+                                <img src="images/Matera_Lakeside6.webp" alt="Matera Lakeside View 6"
+                                    class="property-img" loading="lazy">
+                                <img src="images/Matera_Lakeside7.webp" alt="Matera Lakeside View 7"
+                                    class="property-img" loading="lazy">
+                                <img src="images/Matera_Lakeside8.webp" alt="Matera Lakeside View 8"
+                                    class="property-img" loading="lazy">
                             </div>
                             <div class="slider-counter" id="counter1">1 / 8</div>
+                            <!-- Preload: only first 2 images load eagerly, rest lazy -->
                             <button class="slider-btn prev" onclick="slideProperty('slider1', -1)"><i
                                     class="bi bi-chevron-left"></i></button>
                             <button class="slider-btn next" onclick="slideProperty('slider1', 1)"><i
@@ -215,19 +215,19 @@
                             <div class="property-badge badge-new">New Launching</div>
                             <div class="property-image-slider" id="slider2">
                                 <img src="images/Pasadena_square_south.webp" alt="Pasadena Square South"
-                                    class="property-img active">
+                                    class="property-img active" loading="lazy">
                                 <img src="images/Pasadena_square_south2.webp" alt="Pasadena Square South View 2"
-                                    class="property-img">
+                                    class="property-img" loading="lazy">
                                 <img src="images/Pasadena_square_south3.webp" alt="Pasadena Square South View 3"
-                                    class="property-img">
+                                    class="property-img" loading="lazy">
                                 <img src="images/Pasadena_square_south4.webp" alt="Pasadena Square South View 4"
-                                    class="property-img">
+                                    class="property-img" loading="lazy">
                                 <img src="images/Pasadena_square_south5.webp" alt="Pasadena Square South View 5"
-                                    class="property-img">
+                                    class="property-img" loading="lazy">
                                 <img src="images/Pasadena_square_south6.webp" alt="Pasadena Square South View 6"
-                                    class="property-img">
+                                    class="property-img" loading="lazy">
                                 <img src="images/Pasadena_square_south7.webp" alt="Pasadena Square South View 7"
-                                    class="property-img">
+                                    class="property-img" loading="lazy">
                             </div>
                             <div class="slider-counter" id="counter2">1 / 7</div>
                             <button class="slider-btn prev" onclick="slideProperty('slider2', -1)"><i
@@ -311,8 +311,10 @@
                         <div class="property-image-wrapper">
                             <div class="property-badge badge-promo">Best Seller</div>
                             <div class="property-image-slider" id="slider3">
-                                <img src="images/altadena.png" alt="Altadena" class="property-img active">
-                                <img src="images/interior.png" alt="Altadena Interior" class="property-img">
+                                <img src="images/altadena.webp" alt="Altadena" class="property-img active"
+                                    loading="lazy">
+                                <img src="images/interior.webp" alt="Altadena Interior" class="property-img"
+                                    loading="lazy">
                             </div>
                             <div class="slider-counter" id="counter3">1 / 2</div>
                             <button class="slider-btn prev" onclick="slideProperty('slider3', -1)"><i
@@ -481,7 +483,7 @@
             <!-- Desktop: Grid | Mobile: Slider -->
             <div class="gallery-grid gallery-desktop" data-aos="fade-up" data-aos-delay="100">
                 <div class="gallery-item" onclick="openLightbox(0)">
-                    <img src="images/galllery.jpeg" alt="Kawasan Paramount Land Serpong" loading="lazy">
+                    <img src="images/galllery.webp" alt="Kawasan Paramount Land Serpong" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
                             <i class="bi bi-zoom-in"></i>
@@ -490,7 +492,7 @@
                     </div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(1)">
-                    <img src="images/gallery2.jpeg" alt="Lingkungan Asri Paramount Land" loading="lazy">
+                    <img src="images/gallery2.webp" alt="Lingkungan Asri Paramount Land" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
                             <i class="bi bi-zoom-in"></i>
@@ -499,7 +501,7 @@
                     </div>
                 </div>
                 <div class="gallery-item" onclick="openLightbox(2)">
-                    <img src="images/gallery3.jpeg" alt="Fasilitas Paramount Land Serpong" loading="lazy">
+                    <img src="images/gallery3.webp" alt="Fasilitas Paramount Land Serpong" loading="lazy">
                     <div class="gallery-overlay">
                         <div class="gallery-overlay-content">
                             <i class="bi bi-zoom-in"></i>
@@ -513,7 +515,7 @@
                 <div class="gallery-slider-track" id="gallerySliderTrack">
                     <div class="gallery-slide" onclick="openLightbox(0)">
                         <div class="gallery-slide-inner">
-                            <img src="images/galllery.jpeg" alt="Kawasan Paramount Land Serpong" loading="lazy">
+                            <img src="images/galllery.webp" alt="Kawasan Paramount Land Serpong" loading="lazy">
                             <div class="gallery-overlay">
                                 <div class="gallery-overlay-content">
                                     <i class="bi bi-zoom-in"></i>
@@ -524,7 +526,7 @@
                     </div>
                     <div class="gallery-slide" onclick="openLightbox(1)">
                         <div class="gallery-slide-inner">
-                            <img src="images/gallery2.jpeg" alt="Lingkungan Asri Paramount Land" loading="lazy">
+                            <img src="images/gallery2.webp" alt="Lingkungan Asri Paramount Land" loading="lazy">
                             <div class="gallery-overlay">
                                 <div class="gallery-overlay-content">
                                     <i class="bi bi-zoom-in"></i>
@@ -535,7 +537,7 @@
                     </div>
                     <div class="gallery-slide" onclick="openLightbox(2)">
                         <div class="gallery-slide-inner">
-                            <img src="images/gallery3.jpeg" alt="Fasilitas Paramount Land Serpong" loading="lazy">
+                            <img src="images/gallery3.webp" alt="Fasilitas Paramount Land Serpong" loading="lazy">
                             <div class="gallery-overlay">
                                 <div class="gallery-overlay-content">
                                     <i class="bi bi-zoom-in"></i>
@@ -640,10 +642,10 @@
         <span class="floating-wa-tooltip">Chat dengan kami</span>
     </a>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="script.js"></script>
+    <!-- Scripts (deferred for performance) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" defer></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
 </body>
 
 </html>

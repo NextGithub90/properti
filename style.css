@@ -36,16 +36,25 @@ body {
     background: var(--white);
     overflow-x: hidden;
     line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeSpeed;
 }
+
+/* Performance: GPU acceleration for animated elements */
+img { content-visibility: auto; }
+.property-img { will-change: opacity; }
+.hero-slide { will-change: opacity, transform; }
 
 h1,h2,h3,h4,h5,h6 { font-family: 'Playfair Display', Georgia, serif; font-weight: 700; line-height: 1.2; }
 
 /* ========== NAVBAR ========== */
 .navbar {
     padding: 16px 0;
-    transition: var(--transition);
+    transition: background 0.35s ease, padding 0.35s ease, box-shadow 0.35s ease;
     background: transparent;
     z-index: 1000;
+    will-change: background, padding;
 }
 .navbar.scrolled {
     background: rgba(255,255,255,0.95);
