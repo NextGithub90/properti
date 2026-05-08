@@ -133,9 +133,9 @@ function slideProperty(sliderId, direction) {
 
 // ========== GALLERY LIGHTBOX ==========
 var galleryImages = [
-    'images/galllery.webp',
-    'images/gallery2.webp',
-    'images/gallery3.webp'
+    'images/gallery4.jpeg',
+    'images/gallery5.jpeg',
+    'images/gallery6.jpeg'
 ];
 var currentLightboxIndex = 0;
 
