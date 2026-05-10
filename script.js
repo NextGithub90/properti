@@ -133,11 +133,58 @@ function slideProperty(sliderId, direction) {
 
 // ========== GALLERY LIGHTBOX ==========
 var galleryImages = [
+    'images/gallery2.jpeg',
+    'images/gallery3.jpeg',
     'images/gallery4.jpeg',
     'images/gallery5.jpeg',
-    'images/gallery6.jpeg'
+    'images/gallery6.jpeg',
+    'images/gallery7.jpeg',
+    'images/gallery8.jpeg',
+    'images/gallery9.jpeg',
+    'images/gallery10.jpeg',
+    'images/gallery11.jpeg',
+    'images/gallery12.jpeg',
+    'images/gallery13.jpeg',
+    'images/gallery14.jpeg',
+    'images/gallery15.jpeg',
+    'images/gallery16.jpeg',
+    'images/gallery17.jpeg',
+    'images/gallery18.jpeg',
+    'images/gallery19.jpeg',
+    'images/gallery20.jpeg',
+    'images/gallery21.jpeg',
+    'images/gallery22.jpeg',
+    'images/gallery23.jpeg',
+    'images/gallery24.jpeg',
+    'images/gallery101jpeg.jpeg',
+    'images/galllery.jpeg'
 ];
 var currentLightboxIndex = 0;
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Inject Gallery HTML
+    var desktopContainer = document.getElementById('galleryDesktopContainer');
+    var mobileTrack = document.getElementById('gallerySliderTrack');
+    var dotsContainer = document.getElementById('galleryDots');
+    
+    if (desktopContainer && mobileTrack && dotsContainer) {
+        var desktopHTML = '';
+        var mobileHTML = '';
+        galleryImages.forEach(function(src, i) {
+            desktopHTML += '<div class="gallery-item" onclick="openLightbox(' + i + ')">' +
+                '<img src="' + src + '" alt="Galeri Kawasan ' + (i+1) + '" loading="lazy">' +
+                '<div class="gallery-overlay"><div class="gallery-overlay-content"><i class="bi bi-zoom-in"></i><span>Lihat Foto</span></div></div></div>';
+                
+            mobileHTML += '<div class="gallery-slide" onclick="openLightbox(' + i + ')">' +
+                '<div class="gallery-slide-inner"><img src="' + src + '" alt="Galeri Kawasan ' + (i+1) + '" loading="lazy">' +
+                '<div class="gallery-overlay"><div class="gallery-overlay-content"><i class="bi bi-zoom-in"></i><span>Lihat Foto</span></div></div></div></div>';
+        });
+        
+        desktopContainer.innerHTML = desktopHTML;
+        mobileTrack.innerHTML = mobileHTML;
+        dotsContainer.innerHTML = '1 / ' + galleryImages.length;
+    }
+});
 
 function openLightbox(index) {
     currentLightboxIndex = index;
@@ -178,7 +225,7 @@ document.addEventListener('click', function (e) {
 
 // ========== MOBILE GALLERY SLIDER ==========
 var gallerySlideIndex = 0;
-var galleryTotalSlides = 3;
+var galleryTotalSlides = galleryImages.length;
 
 function moveGallerySlider(direction) {
     gallerySlideIndex = (gallerySlideIndex + direction + galleryTotalSlides) % galleryTotalSlides;
@@ -195,11 +242,11 @@ function updateGallerySlider() {
     if (track) {
         track.style.transform = 'translateX(-' + (gallerySlideIndex * 100) + '%)';
     }
-    // Update dots
-    var dots = document.querySelectorAll('.gallery-dot');
-    dots.forEach(function (dot, i) {
-        dot.classList.toggle('active', i === gallerySlideIndex);
-    });
+    // Update counter
+    var dotsContainer = document.getElementById('galleryDots');
+    if (dotsContainer) {
+        dotsContainer.innerHTML = (gallerySlideIndex + 1) + ' / ' + galleryTotalSlides;
+    }
 }
 
 // Touch swipe support for mobile gallery
